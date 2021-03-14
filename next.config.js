@@ -1,4 +1,7 @@
 module.exports = {
     assetPrefix: '/blog/',
-    basePath: "/blog/"
+    basePath: "/blog/",
+    images: {
+        loader: "imgix",
+    }
 }
