@@ -1,65 +1,54 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
+import Featured from '../components/Featured';
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
+import Posts from '../components/Posts';
+import environment from '../environment';
 export default function Home() {
+  let [isLoading, setIsLoading] = useState(false);
+  let [featuredPost, setFeaturedPost] = useState(null)
+  let [posts, setPosts] = useState([]);
+  let [totalPosts, setTotalPosts] = useState(0);
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(environment.baseBlogUrl).then(async res => {
+      res.json().then(data => {
+        let {
+          posts: p = [],
+          found = 0
+        } = data || {};
+        setPosts(p);
+        setTotalPosts(found);
+        setIsLoading(false);
+        if (p.length > 0) {
+          setFeaturedPost(p[0])
+        }
+      }).catch(err => {
+        setIsLoading(false);
+      });
+    }).catch(err => {
+      setIsLoading(false);
+    })
+  }, [])
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Blog of Abdul Mohaimin | #nam_c</title>
+        <meta title="description" content="The blog which contains the posts published by Abdul Mohaimin. Stay tuned for more updates and live sessions. Designed and Developed by #nam_c" />
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      <div className="wrapper">
+        <section id="navbar">
+          <Navbar />
+        </section>
+        {featuredPost && (<section className="d-pc" id="featured">
+          <Featured {...featuredPost} />
+        </section>)}
+        <section id="posts">
+          <Posts isLoading={isLoading} posts={posts} totalPosts={totalPosts} />
+        </section>
+      </div>
+      <Footer />
     </div>
   )
 }
