@@ -8,7 +8,7 @@ export default function Navbar() {
             <div className="nav">
                 <div className="brand-logo">
                     <Link href="/">
-                        <img alt="#nam_c logo" src="/namc.png" width="100%" height="100%" />
+                        <img className="cursor-pointer" alt="#nam_c logo" src="/namc.png" />
                     </Link>
                 </div>
                 <div className="nav-menu">
