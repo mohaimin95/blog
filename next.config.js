@@ -3,5 +3,6 @@ module.exports = {
     basePath: "/blog",
     images: {
         loader: "imgix",
-    }
+    },
+    exportTrailingSlash: true
 }
