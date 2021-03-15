@@ -19,7 +19,7 @@ module.exports = withNextOptimizedImages(
         pageExtensions: ['js', 'jsx', 'mdx'],
         target: 'serverless',
         basePath: ghPages ? '/blog' : '',
-        assetPrefix: ghPages ? '/blog/' : '',
+        assetPrefix: ghPages ? '/blog' : '',
         images: {
             loader: "imgix",
         }
