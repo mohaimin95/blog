@@ -5,6 +5,7 @@ import Categories from './Categories'
 import Tags from './Tags'
 
 export default function Featured({ID:id,title,content,date,categories,tags,featured_image}) {
+    let postPath = environment.getPostPath(title,id);
     return (
         <div className="featured">
             <h1>Featured Post</h1>
@@ -19,7 +20,7 @@ export default function Featured({ID:id,title,content,date,categories,tags,featu
 
                     </div>
                     <div className="featured-post-title">
-                        <Link href={environment.getPostPath(title,id)}>
+                        <Link href={postPath} as={postPath}>
                         <h2>{title}</h2>
                         </Link>
                     </div>

@@ -11,7 +11,7 @@ export default {
         return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`
     },
     getPostPath: (title, id) => {
-        return `${title}/${id}`.toLowerCase().replace(/[^a-z0-9 /]/gi, '').replace(/ /gi, "-");
+        return `/${title}/${id}`.toLowerCase().replace(/[^a-z0-9 /]/gi, '').replace(/ /gi, "-");
     },
     refreshDarkModeSettings: () => {
         if(typeof localStorage!=="undefined") {

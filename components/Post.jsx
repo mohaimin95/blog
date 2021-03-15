@@ -3,9 +3,9 @@ import environment from '../environment'
 import Categories from './Categories'
 import Link from 'next/link'
 export default function Post({ ID:id,title, content, date, categories,featured_image }) {
-
+    let postPath = environment.getPostPath(title,id);
     return (
-        <Link href={environment.getPostPath(title,id)}>
+        <Link href={postPath} as={postPath}>
             <div className="post">
                 <div className="post-thumbnail">
                     <img src={featured_image || "https://picsum.photos/300/200"} alt={title || "Sample Image"} />
