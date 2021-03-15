@@ -1,5 +1,5 @@
 module.exports = {
-    assetPrefix: '/',
+    assetPrefix: '/blog',
     basePath: "/blog",
     images: {
         loader: "imgix",

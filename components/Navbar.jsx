@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 import Link from 'next/link';
 import DarkModeButton from './DarkModeButton';
@@ -9,7 +8,7 @@ export default function Navbar() {
             <div className="nav">
                 <div className="brand-logo">
                     <Link href="/">
-                        <Image alt="#nam_c logo" src="/namc.png" width="100%" height="100%" />
+                        <img alt="#nam_c logo" src="https://mohaimin95.github.io/blog/namc.png" />
                     </Link>
                 </div>
                 <div className="nav-menu">
